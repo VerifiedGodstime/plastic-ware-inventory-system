@@ -1,4 +1,6 @@
 const express = require("express");
+const authenticate = require("../middleware/authMiddleware");
+const authorize = require("../middleware/roleMiddleware");
 
 const {
   getSuppliers,
@@ -16,9 +18,21 @@ router.get("/", getSuppliers);
 
 router.get("/:id", getSupplierById);
 
-router.post("/", validateSupplier, createSupplier);
+router.post(
+  "/",
+  authenticate,
+  authorize("admin", "manager"),
+  validateSupplier,
+  createSupplier
+);
 
-router.put("/:id", validateSupplier, updateSupplier);
+router.put(
+  "/:id",
+  authenticate,
+  authorize("admin", "manager"),
+  validateSupplier,
+  updateSupplier
+);
 
 router.delete("/:id", deleteSupplier);
 
