@@ -14,9 +14,9 @@ const validateCategory = require("../validators/categoryValidator");
 
 const router = express.Router();
 
-router.get("/", getCategories);
+router.get("/", authenticate, getCategories);
 
-router.get("/:id", getCategoryById);
+router.get("/:id", authenticate, getCategoryById);
 
 router.post(
   "/",
@@ -34,6 +34,11 @@ router.put(
   updateCategory
 );
 
-router.delete("/:id", deleteCategory);
+router.delete(
+  "/:id",
+  authenticate,
+  authorize("admin"),
+  deleteCategory
+);
 
 module.exports = router;

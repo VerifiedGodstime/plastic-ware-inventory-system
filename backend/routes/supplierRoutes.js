@@ -14,9 +14,9 @@ const validateSupplier = require("../validators/supplierValidator");
 
 const router = express.Router();
 
-router.get("/", getSuppliers);
+router.get("/", authenticate, getSuppliers);
 
-router.get("/:id", getSupplierById);
+router.get("/:id", authenticate, getSupplierById);
 
 router.post(
   "/",
@@ -34,6 +34,11 @@ router.put(
   updateSupplier
 );
 
-router.delete("/:id", deleteSupplier);
+router.delete(
+  "/:id",
+  authenticate,
+  authorize("admin"),
+  deleteSupplier
+);
 
 module.exports = router;
