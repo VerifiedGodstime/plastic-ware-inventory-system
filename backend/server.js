@@ -2,6 +2,7 @@ const express = require("express");
 const pool = require("./config/database");
 const categoryRoutes = require("./routes/categoryRoutes");
 const supplierRoutes = require("./routes/supplierRoutes");
+const productRoutes = require("./routes/productRoutes");
 
 const app = express();
 
@@ -10,7 +11,7 @@ const PORT = 5000;
 app.use(express.json());
 app.use("/api/categories", categoryRoutes);
 app.use("/api/suppliers", supplierRoutes);
-
+app.use("/api/products", productRoutes);
 
 app.get("/", (req, res) => {
   res.json({
