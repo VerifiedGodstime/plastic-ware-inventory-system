@@ -4,6 +4,8 @@ const {
   getCategories,
   createCategory,
   getCategoryById,
+  updateCategory,
+  deleteCategory,
 } = require("../controllers/categoryController");
 
 const validateCategory = require("../validators/categoryValidator");
@@ -17,5 +19,7 @@ router.get("/:id", getCategoryById);
 router.post("/", validateCategory, createCategory);
 
 router.put("/:id", validateCategory, updateCategory);
+
+router.delete("/:id", deleteCategory);
 
 module.exports = router;
