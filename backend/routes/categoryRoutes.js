@@ -1,4 +1,6 @@
 const express = require("express");
+const authenticate = require("../middleware/authMiddleware");
+const authorize = require("../middleware/roleMiddleware");
 
 const {
   getCategories,
@@ -16,7 +18,13 @@ router.get("/", getCategories);
 
 router.get("/:id", getCategoryById);
 
-router.post("/", validateCategory, createCategory);
+router.post(
+  "/",
+  authenticate,
+  authorize("admin", "manager"),
+  validateCategory,
+  createCategory
+);
 
 router.put("/:id", validateCategory, updateCategory);
 
