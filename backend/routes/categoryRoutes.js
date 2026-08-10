@@ -26,7 +26,13 @@ router.post(
   createCategory
 );
 
-router.put("/:id", validateCategory, updateCategory);
+router.put(
+  "/:id",
+  authenticate,
+  authorize("admin", "manager"),
+  validateCategory,
+  updateCategory
+);
 
 router.delete("/:id", deleteCategory);
 
