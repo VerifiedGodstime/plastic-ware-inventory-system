@@ -21,6 +21,7 @@ const getCategories = async (req, res) => {
   }
 };
 
+
 // Create a new category
 const createCategory = async (req, res) => {
   try {
@@ -90,6 +91,7 @@ const getCategoryById = async (req, res) => {
   }
 };
 
+
 // Update a category
 const updateCategory = async (req, res) => {
   try {
@@ -134,6 +136,7 @@ const updateCategory = async (req, res) => {
     });
   }
 };
+
 
 // Delete a category
 const deleteCategory = async (req, res) => {
