@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plastic Ware Inventory Management System</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+  <!-- Login Page -->
+
+  <section id="loginPage" class="page">
+    <div class="login-container">
+      <h1>Plastic Ware Inventory</h1>
+      <p>Inventory Management System</p>
+
+
+  <form id="loginForm">
+    <input
+      type="email"
+      id="loginEmail"
+      placeholder="Email"
+      required
+    >
+
+    <input
+      type="password"
+      id="loginPassword"
+      placeholder="Password"
+      required
+    >
+
+    <button type="submit">Login</button>
+
+    <p id="loginMessage"></p>
+  </form>
+</div>
+
+
+  </section>
+
+  <!-- Dashboard -->
+
+  <section id="dashboardPage" class="page hidden">
+
+
+<header class="topbar">
+  <div>
+    <h1>Inventory Dashboard</h1>
+    <p id="welcomeUser"></p>
+  </div>
+
+  <button id="logoutBtn">Logout</button>
+</header>
+
+<nav class="sidebar">
+  <button onclick="showSection('dashboardSection')">Dashboard</button>
+  <button onclick="showSection('productsSection')">Products</button>
+  <button onclick="showSection('categoriesSection')">Categories</button>
+  <button onclick="showSection('suppliersSection')">Suppliers</button>
+  <button onclick="showSection('inventorySection')">Inventory</button>
+</nav>
+
+<main class="content">
+
+  <!-- Dashboard -->
+  <section id="dashboardSection" class="content-section">
+    <h2>Overview</h2>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Total Products</h3>
+        <p id="totalProducts">0</p>
+      </div>
+
+      <div class="card">
+        <h3>Total Categories</h3>
+        <p id="totalCategories">0</p>
+      </div>
+
+      <div class="card">
+        <h3>Total Suppliers</h3>
+        <p id="totalSuppliers">0</p>
+      </div>
+
+      <div class="card">
+        <h3>Low Stock</h3>
+        <p id="lowStockCount">0</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section id="productsSection" class="content-section hidden">
+    <div class="section-header">
+      <h2>Products</h2>
+      <button onclick="openProductForm()">Add Product</button>
+    </div>
+
+    <div id="productFormContainer" class="form-container hidden">
+      <h3>Add Product</h3>
+
+      <form id="productForm">
+
+        <input
+          type="text"
+          id="productName"
+          placeholder="Product name"
+          required
+        >
+
+        <input
+          type="text"
+          id="productCode"
+          placeholder="Product code"
+          required
+        >
+
+        <input
+          type="number"
+          id="categoryId"
+          placeholder="Category ID"
+          required
+        >
+
+        <input
+          type="number"
+          id="supplierId"
+          placeholder="Supplier ID"
+          required
+        >
+
+        <input
+          type="number"
+          id="buyingPrice"
+          placeholder="Buying price"
+          required
+        >
+
+        <input
+          type="number"
+          id="sellingPrice"
+          placeholder="Selling price"
+          required
+        >
+
+        <input
+          type="number"
+          id="reorderLevel"
+          placeholder="Reorder level"
+          value="10"
+          required
+        >
+
+        <textarea
+          id="productDescription"
+          placeholder="Description"
+        ></textarea>
+
+        <button type="submit">Create Product</button>
+      </form>
+
+      <p id="productMessage"></p>
+    </div>
+
+    <div id="productsList"></div>
+  </section>
+
+  <!-- Categories -->
+  <section id="categoriesSection" class="content-section hidden">
+    <div class="section-header">
+      <h2>Categories</h2>
+      <button onclick="openCategoryForm()">Add Category</button>
+    </div>
+
+    <div id="categoryFormContainer" class="form-container hidden">
+      <h3>Add Category</h3>
+
+      <form id="categoryForm">
+        <input
+          type="text"
+          id="categoryName"
+          placeholder="Category name"
+          required
+        >
+
+        <textarea
+          id="categoryDescription"
+          placeholder="Description"
+        ></textarea>
+
+        <button type="submit">Create Category</button>
+      </form>
+
+      <p id="categoryMessage"></p>
+    </div>
+
+    <div id="categoriesList"></div>
+  </section>
+
+  <!-- Suppliers -->
+  <section id="suppliersSection" class="content-section hidden">
+    <div class="section-header">
+      <h2>Suppliers</h2>
+      <button onclick="openSupplierForm()">Add Supplier</button>
+    </div>
+
+    <div id="supplierFormContainer" class="form-container hidden">
+      <h3>Add Supplier</h3>
+
+      <form id="supplierForm">
+        <input
+          type="text"
+          id="supplierName"
+          placeholder="Supplier name"
+          required
+        >
+
+        <input
+          type="text"
+          id="contactPerson"
+          placeholder="Contact person"
+        >
+
+        <input
+          type="text"
+          id="supplierPhone"
+          placeholder="Phone"
+        >
+
+        <input
+          type="email"
+          id="supplierEmail"
+          placeholder="Email"
+        >
+
+        <textarea
+          id="supplierAddress"
+          placeholder="Address"
+        ></textarea>
+
+        <button type="submit">Create Supplier</button>
+      </form>
+
+      <p id="supplierMessage"></p>
+    </div>
+
+    <div id="suppliersList"></div>
+  </section>
+
+  <!-- Inventory -->
+  <section id="inventorySection" class="content-section hidden">
+    <div class="section-header">
+      <h2>Inventory</h2>
+      <button onclick="openInventoryForm()">Record Transaction</button>
+    </div>
+
+    <div id="inventoryFormContainer" class="form-container hidden">
+      <h3>Record Inventory Transaction</h3>
+
+      <form id="inventoryForm">
+
+        <input
+          type="number"
+          id="inventoryProductId"
+          placeholder="Product ID"
+          required
+        >
+
+        <select id="inventoryType" required>
+          <option value="">Select transaction type</option>
+          <option value="IN">Stock IN</option>
+          <option value="OUT">Stock OUT</option>
+        </select>
+
+        <input
+          type="number"
+          id="inventoryQuantity"
+          placeholder="Quantity"
+          min="1"
+          required
+        >
+
+        <input
+          type="text"
+          id="inventoryReason"
+          placeholder="Reason"
+          required
+        >
+
+        <button type="submit">Record Transaction</button>
+      </form>
+
+      <p id="inventoryMessage"></p>
+    </div>
+
+    <div id="inventoryList"></div>
+
+    <h3>Low Stock Products</h3>
+    <div id="lowStockList"></div>
+  </section>
+
+</main>
+```
+
+  </section>
+
+  <script src="app.js"></script>
+
+</body>
+</html>
